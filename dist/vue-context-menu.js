@@ -93,7 +93,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/benzhao/Sites/@xunlei/vue-context-menu/src/VueContextMenu.vue"
+Component.options.__file = "D:\\phpstudy_pro\\WWW\\vue-context-menu\\src\\VueContextMenu.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VueContextMenu.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -131,6 +131,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'context-menu',
@@ -147,7 +151,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   props: {
     target: null,
-    show: Boolean
+    show: Boolean,
+    width: {
+      type: Number,
+      default: 81
+    },
+    height: {
+      type: Number,
+      default: 98
+    }
   },
   mounted: function mounted() {
     this.bindEvents();
@@ -219,10 +231,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // 布局
     layout: function layout() {
+      // offsetWidth 包含border padding
+      // scrollWidth 只包含自己
+      var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+      var h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
       this.style = {
         left: this.x + 'px',
         top: this.y + 'px'
       };
+      if (this.x + this.width > w) {
+        this.style.left = this.x - this.width + 'px';
+      }
+      if (this.y + this.height > h) {
+        this.style.top = this.y - this.height + 'px';
+      }
     }
   }
 });
@@ -336,6 +360,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.show),
       expression: "show"
     }],
+    ref: "contextMenu",
     staticStyle: {
       "display": "block"
     },

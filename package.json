@@ -1,7 +1,7 @@
 {
-  "name": "@xunlei/vue-context-menu",
+  "name": "@fyzhu/vue-context-menu",
   "description": "Vue 2.0 右键菜单组件，菜单内容可以随意自定义",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "private": false,
   "main": "dist/vue-context-menu.js",
   "files": [
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:xunleif2e/vue-context-menu.git"
+    "url": "git@github.com:fyzhu/vue-context-menu.git"
   },
   "unpkg": "dist/vue-context-menu.js",
   "keywords": [
@@ -18,14 +18,15 @@
     "vue-plugin",
     "vue-component"
   ],
-  "author": "赵兵",
+  "author": "fyzhu",
   "license": "MIT",
-  "homepage": "https://zhaobing.site",
+  "homepage": "http://www.zhuyunfeng.com",
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "npm run build:library && npm run build:demo",
+    "build": "npm run dist && npm run build:demo",
     "build:demo": "node build/build.js",
-    "build:library": "webpack --config build/webpack.lib.conf.js"
+    "dist": "webpack --config build/webpack.lib.conf.js",
+    "prepare": "npm run dist"
   },
   "dependencies": {},
   "devDependencies": {

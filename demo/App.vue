@@ -1,18 +1,20 @@
 <template>
   <div id="app">
-    <img ref="logo"src="./assets/logo.png">
-    <context-menu class="right-menu" 
-      :target="contextMenuTarget" 
-      :show="contextMenuVisible" 
-      @update:show="(show) => contextMenuVisible = show">
-      <a href="javascript:;" @click="copyMsg">复制</a>
-      <a href="javascript:;" @click="quoteMsg">引用</a>
-      <a href="javascript:;" @click="deleteMsg">删除</a>
-    </context-menu>
+    <div id="context">
+      <img ref="logo" src="./assets/logo.png">
+      <context-menu class="right-menu" 
+        :target="contextMenuTarget" 
+        :show="contextMenuVisible" 
+        @update:show="(show) => contextMenuVisible = show">
+        <a href="javascript:;" @click="copyMsg">复制</a>
+        <a href="javascript:;" @click="quoteMsg">引用</a>
+        <a href="javascript:;" @click="deleteMsg">删除</a>
+      </context-menu>
 
-    <h1>Vue Context Menu</h1>
+      <h1>Vue Context Menu</h1>
 
-    <h3>右键体验</h3>
+      <h3>右键体验</h3>
+    </div>
   </div>
 </template>
 
@@ -21,9 +23,12 @@ export default {
   name: 'app',
   data () {
     return {
-      contextMenuTarget: document.body,
+      contextMenuTarget: document.getElementById('context'),
       contextMenuVisible: false,
     }
+  },
+  mounted () {
+    this.contextMenuTarget = document.getElementById('context')
   },
   methods: {
     copyMsg () {
@@ -47,6 +52,8 @@ export default {
 body {
   height: 100%;
   font-size: 14px;
+  margin: 0;
+  /* border: 100px solid green; */
 }
 #app {
   font-family: 'Microsoft Yahei', 'Avenir', Helvetica, Arial, sans-serif;
@@ -54,8 +61,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   height: 100%;
+}
+#context {
+  height: 1200px;
+  border: 10px solid ;
 }
 h1,
 h2 {

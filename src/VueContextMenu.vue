@@ -1,5 +1,9 @@
 <template>
-  <div :style="style" style="display: block;" v-show="show"
+  <div
+    ref="contextMenu"
+    :style="style"
+    style="display: block;"
+    v-show="show"
     @mousedown.stop
     @contextmenu.prevent
   >
@@ -22,7 +26,15 @@ export default {
   },
   props: {
     target: null,
-    show: Boolean
+    show: Boolean,
+    width: {
+      type: Number,
+      default: 81
+    },
+    height: {
+      type: Number,
+      default: 98
+    }
   },
   mounted () {
     this.bindEvents()
@@ -85,9 +97,25 @@ export default {
 
     // 布局
     layout () {
+      // offsetWidth 包含border padding
+      // scrollWidth 只包含自己
+      var w=window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+
+      var h=window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
+
       this.style = {
         left: this.x + 'px',
         top: this.y + 'px'
+      }
+      if (this.x + this.width > w) {
+        this.style.left = this.x - this.width + 'px'
+      } 
+      if (this.y + this.height > h) {
+        this.style.top = this.y - this.height + 'px'
       }
     }
   }
